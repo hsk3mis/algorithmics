@@ -9,24 +9,22 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-import static java.util.stream.Collectors.*;
-import static java.util.stream.IntStream.*;
-import static org.junit.Assert.*;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.IntStream.rangeClosed;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Michal Gryglicki, PL
  */
-public class QuickSortTest {
+public class MergeSortTest {
 
     private Function<List<Integer>, List<Integer>> sortFunction;
 
+
     @Before
     public void setUp() {
-        //sortFunction = QuickSort::qsortWastefully;
-        sortFunction = QuickSort::qsortInPlace;
+        sortFunction = MergeSort::sortUsingArrays;
     }
 
     @Test
@@ -46,7 +44,7 @@ public class QuickSortTest {
     @Test
     public void sort_sorted_short_odd_list() {
         List<Integer> list = rangeClosed(1, 3).boxed().collect(toList());
-        List < Integer > sortedList = sortFunction.apply(list);
+        List<Integer> sortedList = sortFunction.apply(list);
         assertSorted(list, sortedList);
     }
 

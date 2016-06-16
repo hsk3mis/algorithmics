@@ -41,6 +41,7 @@ public class QuickSort {
         } else {
             int pivotPositionBeforePartition = choosePivot(list, from, to);
             int pivotPositionAfterPartition = partitionInPlace(list, pivotPositionBeforePartition, from, to);
+            //Could be written without recursion with the usage of custom internal Stack structure
             _qsortInPlace(list, from, pivotPositionAfterPartition-1);
             _qsortInPlace(list, pivotPositionAfterPartition+1, to);
             return;
