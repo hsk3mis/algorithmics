@@ -2,8 +2,10 @@ package com.gryglicki.sorting;
 
 import com.google.common.collect.Lists;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -72,7 +74,16 @@ public class MergeSortTest {
     @Test
     public void sort_random_long_list() {
         Random random = new Random();
-        List<Integer> list = random.ints().limit(100).boxed().collect(toList());
+        List<Integer> list = random.ints().limit((long) Math.pow(2, 10)).boxed().collect(toList());
+        List<Integer> sortedList = sortFunction.apply(list);
+        assertSorted(list, sortedList);
+    }
+
+    @Ignore("Too long for the normal execution and too much memory uwage >4GB")
+    @Test
+    public void sort_random_veeeery_long_list() {
+        Random random = new Random();
+        List<Integer> list = random.ints().limit((long) Math.pow(2, 30)).boxed().collect(toList());
         List<Integer> sortedList = sortFunction.apply(list);
         assertSorted(list, sortedList);
     }

@@ -33,7 +33,10 @@ public class MergeSort {
         if (to - from < 1) { //size 1
             return;
         }
-        int middle = (to + from) / 2;
+        /* SO WRONG!!! Fails for arrays of big sizes eg. 2^30 which is not so uncommon = only 4GBs of memory ;) */
+        /* int middle = (to + from) / 2; */
+        /* This one will hopefully work for big sizes! Some other ideas from Joshua Bloch: int middle = (from + to) >>> 1; */
+        int middle = from + ((to - from) / 2);
         sortRecursive(list, from, middle, listToMerge);
         sortRecursive(list, middle + 1, to, listToMerge);
         merge(list, from, middle, to, listToMerge);
