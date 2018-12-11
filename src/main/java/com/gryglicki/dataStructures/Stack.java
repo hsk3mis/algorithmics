@@ -1,7 +1,5 @@
 package com.gryglicki.dataStructures;
 
-import java.lang.reflect.Array;
-
 /**
  * Created by Michał Gryglicki, PL on 14.06.2016.
  */
@@ -21,7 +19,11 @@ public class Stack<T> {
     }
 
     public T pop() {
-        return stack[top--];
+        //return stack[top--]; /* Memory leak (not cleaning reference from stack to previous top) */
+        T ret = stack[top];
+        stack[top] = null;
+        top--;
+        return ret;
     }
 
     public T top() {
